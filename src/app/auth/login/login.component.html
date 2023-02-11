@@ -1,0 +1,39 @@
+<section>
+    <form 
+        fxLayout="column" 
+        fxLayoutAlign="center center"
+        fxLayoutGap =" 10px"
+        #f = "ngForm"
+        (ngSubmit)="onSubmit(f)"
+        >
+       <mat-form-field hintLabel="Please enter your email">
+            <input 
+                type="email" 
+                name="email" 
+                id="email" 
+                matInput 
+                placeholder="Your email"
+                email
+                required
+                ngModel
+                #emailInput="ngModel"
+            >
+            <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
+            <mat-error *ngIf="!emailInput.hasError('required')">E-mail is invalid.</mat-error>
+       </mat-form-field>
+       <mat-form-field hintLabel="Please enter your password">
+            <input 
+                type="password" 
+                name="password" 
+                id="password" 
+                matInput 
+                placeholder="Your password" 
+                ngModel
+                required
+                minlength="6"
+                #pwInput="ngModel"
+            >
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+    </form>
+</section>
