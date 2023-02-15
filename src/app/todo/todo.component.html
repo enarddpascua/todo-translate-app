@@ -1,6 +1,7 @@
 <main>
     <app-todo-input></app-todo-input>
-    <section fxLayout fxLayoutAlign="center center">
-        <app-todo-list></app-todo-list>
+    <section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <app-todo-list *ngFor="let todo of loadedTodos"
+            [todoElement] = "todo"></app-todo-list>
     </section>
 </main>
