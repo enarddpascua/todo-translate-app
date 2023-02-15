@@ -1,38 +1,49 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-
-interface Todo {
-    name:string,
-    done:boolean,
-    language: string
-}
+import { Todo, TodoWithId } from "./todo.model"; 
+import { tap } from "rxjs/operators";
+import { Observable, Subject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class TodoService {
-    todos:Todo[]  = [];
     //dev url
     url = 'http://localhost:3000/api/v1/todos';
 
     constructor(private http: HttpClient){}
 
-    getAllTodos(){
-        this.http.get<Todo[]>(this.url).subscribe(response=>{
-            console.log(response);
+    private refreshRequired = new Subject<void>();
+
+    get RefreshRequired(){
+        return this.refreshRequired;
+    }
+
+    getAllTodos():Observable<TodoWithId[]>{
+        return this.http.get<TodoWithId[]>(this.url);
+    }
+
+    addTodo(todoData:Todo): Observable<string>{
+       return this.http.post(this.url, todoData, {responseType:'text'}).pipe(
+        tap(() => {
+            this.RefreshRequired.next();
         })
+       );
     }
 
-    addTodo(todoData:Todo){
-        this.http.post<Todo>(this.url, todoData).subscribe(response => {
-            console.log(response);
-        });
-        // console.log(JSON.stringify(todoData))
+    deleteTodo(id:string|undefined):Observable<string>{
+        return this.http.delete(`${this.url}/${id}`, {responseType:'text'}).pipe(
+            tap(() => {
+                this.RefreshRequired.next();
+            })
+        );
     }
 
-    deleteTodo(id:number){
-        this.http.delete<Todo>(`${this.url}/${id}`).subscribe(response => {
-            console.log(response);
-        });
+    updateTodo(id:string|undefined,todo:Todo):Observable<string>{
+        return this.http.put(`${this.url}/${id}`, todo ,{responseType:'text'}).pipe(
+            tap(() => {
+                this.RefreshRequired.next();
+            })
+        );
     }
 }
