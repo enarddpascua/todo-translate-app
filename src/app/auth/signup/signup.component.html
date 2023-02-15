@@ -1,4 +1,5 @@
-<section>
+<main fxLayout="column" fxLayoutAlign="center center" id="main">
+    <h1>Register</h1>
     <form 
         fxLayout="column" 
         fxLayoutAlign="center center"
@@ -20,7 +21,7 @@
             >
             <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
             <mat-error *ngIf="!emailInput.hasError('required')">E-mail is invalid.</mat-error>
-       </mat-form-field>
+        </mat-form-field>
        <mat-form-field hintLabel="Should be at least 6 characters long">
             <input 
                 type="password" 
@@ -39,4 +40,4 @@
             <mat-checkbox ngModel name="agree" required color="primary" class="form-checkbox">Agree to Terms and Conditions.</mat-checkbox>       
         <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
     </form>
-</section>
+</main>
