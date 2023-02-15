@@ -1,14 +1,16 @@
-<form #f="ngForm" (ngSubmit)="onAddTodo(f.value)">
-    <mat-form-field>
-        <input 
-            type="text" 
-            name="name" 
-            id="todo" 
-            matInput 
-            placeholder="Enter todo here" 
-            ngModel
-            required
-        >
-    </mat-form-field>
-    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Add todo</button>
-</form>
+<div id="form-wrapper" >
+    <form  #f="ngForm" (ngSubmit)="onAddTodo(f)" fxLayout fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-form-field>
+            <input 
+                type="text" 
+                name="name" 
+                id="todo" 
+                matInput 
+                placeholder="Enter todo here" 
+                ngModel
+                required
+            >
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Add todo</button>
+    </form>
+</div>
