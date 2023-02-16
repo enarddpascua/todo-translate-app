@@ -16,15 +16,24 @@ export class AuthenticationService{
        return this.http.post(`${this.url}/signup`, reqBody, {responseType:'text'}); 
     }
 
-    login(reqBody:{email:string, password:string}):Observable<{message:string, userId:string}>{
-        return this.http.post<{message:string, userId:string}>(`${this.url}/login`, reqBody);
+    login(reqBody:{email:string, password:string}):Observable<{message:string, user:string}>{
+        return this.http.post<{message:string, user:string}>(`${this.url}/login`, reqBody);
     }
 
     logout(){
-        sessionStorage.removeItem('x');
+        localStorage.removeItem('user');
     }
 
     isLoggedIn(): boolean{
-        return sessionStorage.getItem('x') ? true : false;
+        return localStorage.getItem('user') ? true : false;
     }
+
+    isAuthenticated() : Boolean {
+        let userData = localStorage.getItem('user')
+        if(userData){
+          return true;
+        }
+        return false;
+      }
+
 }

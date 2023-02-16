@@ -4,13 +4,14 @@ import { LoginComponent } from "./auth/login/login.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { TodoComponent } from "./todo/todo.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
+import { AuthguardService } from "./authguard.service";
 
 
 const routes: Routes = [
 {path: '', component: WelcomeComponent},
 {path: 'signup', component: SignupComponent},
 {path: 'login', component: LoginComponent},
-{path: 'todo', component: TodoComponent}
+{path: 'todo', component: TodoComponent , canActivate:[AuthguardService]}
 ];
 
 @NgModule({

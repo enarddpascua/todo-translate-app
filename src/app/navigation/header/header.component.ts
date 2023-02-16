@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/auth/authentication.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-loggedIn:any = sessionStorage.getItem('x');
+loggedIn:any = localStorage.getItem('user');
 
   
 @Output() sideNavToggle = new EventEmitter<void>();

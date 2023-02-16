@@ -12,7 +12,7 @@ export class TodoInputComponent {
   constructor(private todoService: TodoService){}
 
   onAddTodo(todoForm:NgForm){
-    let uid = sessionStorage.getItem('x');
+    let email =localStorage.getItem('user');
     this.todoService.addTodo({name: todoForm.value.name, done: false, language:'en'}).subscribe(res => {
       console.log(res);
     });
