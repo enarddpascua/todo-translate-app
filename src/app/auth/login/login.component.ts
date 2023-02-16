@@ -15,9 +15,9 @@ export class LoginComponent {
 
   onSubmit(form:NgForm){
     this.authenticationService.login(form.value).subscribe(result => {
-      if(result.message === 'You are successfully logged in'){
+      if(result.message === 'successfully logged in'){
         this.snackBar.open(result.message, 'Ok');
-        sessionStorage.setItem("x", result.userId);
+        localStorage.setItem('user', result.user);
         this.router.navigate(['/todo']);
       }else{
         this.snackBar.open(result.message, 'Ok');
