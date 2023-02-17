@@ -8,7 +8,7 @@ import { AuthenticationService } from 'src/app/auth/authentication.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent{
 loggedIn:any = localStorage.getItem('user');
 
   
@@ -17,7 +17,7 @@ loggedIn:any = localStorage.getItem('user');
 constructor(private authenticationService:AuthenticationService, private snackBar: MatSnackBar){}
 
 public get isLoggedIn(){
-  return this.authenticationService.isLoggedIn();
+  return this.authenticationService.isAuthenticated();
 }
 
  onToggleSideNav(){
