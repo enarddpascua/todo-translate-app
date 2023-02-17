@@ -7,12 +7,16 @@ import { TranslationRequestBody,TranslationResponseBody } from "./translation.mo
     providedIn: 'root'
 })
 export class TranslationService{
-    url = 'https://translation.googleapis.com/language/translate/v2?';
+    url = 'https://translation.googleapis.com/language/translate/v2?key=';
     apiKey = '';
 
     constructor(private http: HttpClient){}
 
     translateTodo(reqBody:TranslationRequestBody):Observable<TranslationResponseBody|any>{
         return this.http.post(`${this.url}${this.apiKey}`,reqBody);
+    }
+
+    getLanguages():Observable<any>{
+        return this.http.get(`${this.url}${this.apiKey}`);
     }
 }
