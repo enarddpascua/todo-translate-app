@@ -6,7 +6,7 @@ import { AuthenticationService } from './auth/authentication.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthguardService implements CanActivate {
+export class GuestAuthguard implements CanActivate {
 
   constructor(private authService : AuthenticationService, private router : Router) { }
 
@@ -16,18 +16,10 @@ export class AuthguardService implements CanActivate {
   }
 
   checkUserLogin(route: ActivatedRouteSnapshot, url: any):boolean {
-    if (this.authService.isAuthenticated()) {
-      const userRole = this.authService.getUserInfo();
-      console.log(userRole.role, route.data);
-      if(route.data['role'] && route.data['role'].indexOf(userRole.role) === -1){
-        this.router.navigate(['/']);
-        return false
-      }
-      return true;
-    }
-      this.router.navigate(['/']);
-      return false;
+    if (!this.authService.isAuthenticated()) {
+     return true;
   }
-
-  
+  this.router.navigate(['/todo']);
+  return false;
+  }
 }

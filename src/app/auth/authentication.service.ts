@@ -16,8 +16,8 @@ export class AuthenticationService{
        return this.http.post(`${this.url}/signup`, reqBody, {responseType:'text'}); 
     }
 
-    login(reqBody:{email:string, password:string}):Observable<{id:number,message:string, user:string, sessionID:string}>{
-        return this.http.post<{id:number,message:string, user:string, sessionID:string}>(`${this.url}/login`, reqBody,{ headers:{
+    login(reqBody:{email:string, password:string}):Observable<{id:number,message:string, user:string, sessionID:string, role:string}>{
+        return this.http.post<{id:number,message:string, user:string, sessionID:string,role:string}>(`${this.url}/login`, reqBody,{ headers:{
             'Access-Control-Allow-Credentials':'http://localhost:3000/api/v1/todos'
         },withCredentials:true});
     }
@@ -27,12 +27,21 @@ export class AuthenticationService{
        return this.http.post<{message:string}>(`${this.url}/logout`,{});
     }
 
-    isLoggedIn(): boolean{
-        return localStorage.getItem('user') ? true : false;
+    getUserInfo():{id:string, email:string, role:string}{
+        let userInfo = localStorage.getItem('user');
+        let role:string = '';
+        let id:string ='';
+        let email: string = '';
+        if(typeof userInfo === 'string'){
+            role = JSON.parse(userInfo).role;
+            id = JSON.parse(userInfo).id;
+            email = JSON.parse(userInfo).email;
+        }
+        return {role,id,email}
     }
 
     isAuthenticated() : Boolean {
-        let userData = localStorage.getItem('user')
+        let userData = localStorage.getItem('user');
         if(userData){
           return true;
         }
