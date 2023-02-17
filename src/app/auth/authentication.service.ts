@@ -24,7 +24,9 @@ export class AuthenticationService{
 
     logout(){
         localStorage.removeItem('user');
-       return this.http.post<{message:string}>(`${this.url}/logout`,{});
+       return this.http.post(`${this.url}/logout`,{}, { headers:{
+        'Access-Control-Allow-Credentials':'http://localhost:3000/api/v1/todos'
+    },withCredentials:true});
     }
 
     getUserInfo():{id:string, email:string, role:string}{
