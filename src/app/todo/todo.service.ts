@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Todo, TodoWithId } from "./todo.model"; 
 import { tap } from "rxjs/operators";
 import { Observable, Subject } from "rxjs";
@@ -20,10 +20,12 @@ export class TodoService {
     }
 
     getAllTodos():Observable<TodoWithId[]>{
-        return this.http.get<TodoWithId[]>(this.url);
+        return this.http.get<TodoWithId[]>(this.url, { headers:{
+            'Access-Control-Allow-Credentials':'http://localhost:3000/api/v1/todos'
+        },withCredentials:true});
     }
 
-    addTodo(todoData:Todo): Observable<string>{
+    addTodo(todoData:{uid:number,name:string,done:boolean,language:string}): Observable<string>{
        return this.http.post(this.url, todoData, {responseType:'text'}).pipe(
         tap(() => {
             this.RefreshRequired.next();

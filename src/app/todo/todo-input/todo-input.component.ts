@@ -12,11 +12,14 @@ export class TodoInputComponent {
   constructor(private todoService: TodoService){}
 
   onAddTodo(todoForm:NgForm){
-    let email =localStorage.getItem('user');
-    this.todoService.addTodo({name: todoForm.value.name, done: false, language:'en'}).subscribe(res => {
-      console.log(res);
-    });
-    todoForm.reset();
-    todoForm.untouched;
+    const userInfo = localStorage.getItem('user');
+    if(typeof userInfo === 'string'){
+        let {id} = JSON.parse(userInfo);
+      this.todoService.addTodo({uid:id, name: todoForm.value.name, done: false, language:'en'}).subscribe(res => {
+        console.log(res);
+      });
+      todoForm.reset();
+      todoForm.untouched;
+    }
   }
 }

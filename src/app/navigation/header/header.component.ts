@@ -25,11 +25,11 @@ public get isLoggedIn(){
  }
 
  onLogout(){
-  console.log(this.isLoggedIn);
-  this.snackBar.open("Successfully logged out", "Ok",{
-    duration: 3000,
-    verticalPosition:'top'
-  });
-  this.authenticationService.logout();
+  this.authenticationService.logout().subscribe(res => {  
+    this.snackBar.open("Successfully logged out", "Ok",{
+      duration: 3000,
+      verticalPosition:'top'
+    });
+  })
  }
 }
