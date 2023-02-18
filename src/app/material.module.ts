@@ -11,10 +11,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
-    imports:[MatButtonModule,MatIconModule, MatInputModule, MatFormFieldModule,MatCheckboxModule, MatSidenavModule, MatToolbarModule,MatListModule,MatCardModule,MatSelectModule,MatTabsModule,MatSnackBarModule],
-    exports:[MatButtonModule, MatIconModule, MatInputModule, MatFormFieldModule,MatCheckboxModule, MatSidenavModule ,MatToolbarModule,MatListModule,MatCardModule,MatSelectModule,MatTabsModule,MatSnackBarModule]
+    imports:[MatButtonModule,MatIconModule, MatInputModule, MatFormFieldModule,MatCheckboxModule, MatSidenavModule, MatToolbarModule,MatListModule,MatCardModule,MatSelectModule,MatTabsModule,MatSnackBarModule,MatExpansionModule],
+    exports:[MatButtonModule, MatIconModule, MatInputModule, MatFormFieldModule,MatCheckboxModule, MatSidenavModule ,MatToolbarModule,MatListModule,MatCardModule,MatSelectModule,MatTabsModule,MatSnackBarModule,MatExpansionModule]
 })
 export class MaterialModule{
 

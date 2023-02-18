@@ -16,6 +16,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { TodoComponent } from './todo/todo.component';
 import { TodoInputComponent } from './todo/todo-input/todo-input.component';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TodoListComponent } from './todo/todo-list/todo-list.component';
     SidenavListComponent,
     TodoComponent,
     TodoInputComponent,
-    TodoListComponent
+    TodoListComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

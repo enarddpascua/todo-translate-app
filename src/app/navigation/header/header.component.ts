@@ -20,6 +20,11 @@ public get isLoggedIn(){
   return this.authenticationService.isAuthenticated();
 }
 
+public get userRole(){
+  let user = this.authenticationService.getUserInfo();
+  return user.role;
+}
+
  onToggleSideNav(){
   this.sideNavToggle.emit();
  }

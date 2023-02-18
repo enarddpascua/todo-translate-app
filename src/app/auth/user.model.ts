@@ -12,3 +12,13 @@ export interface User {
     password: string,
     role:string
 }
+
+export interface UserLog{
+    id:number,
+    uid:number,
+    email:string,
+    created_todos:number,
+    deleted_todos:number,
+    translated_todos:number,
+    last_login: string
+}
