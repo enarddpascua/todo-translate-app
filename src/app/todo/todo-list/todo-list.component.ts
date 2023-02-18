@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TodoService } from '../todo.service';
-import { Todo, TodoWithId } from '../todo.model';
-import { NgForm } from '@angular/forms';
+import { TodoWithId } from '../todo.model';
 import { MatSelect } from '@angular/material/select';
 import { TranslationService } from '../translation.service';
-import { tap } from 'rxjs';
+import { SnackbarService } from 'src/app/snackbar.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,11 +13,11 @@ import { tap } from 'rxjs';
 export class TodoListComponent{
    @Input() todoElement:TodoWithId | undefined;
 
-  constructor(private todoService:TodoService, private translationService: TranslationService){}
+  constructor(private todoService:TodoService, private translationService: TranslationService, private snackBar:SnackbarService){}
   
   deleteTodo(id:string | undefined){
     this.todoService.deleteTodo(id).subscribe(res=>{
-      console.log(res);
+      this.snackBar.notifyUser(res, 'Ok');
     });
   }
 
