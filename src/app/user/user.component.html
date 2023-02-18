@@ -1,0 +1,19 @@
+<div id="main" fxLayout="column">
+    <mat-accordion>
+        <h1>User activity logs</h1>
+        <mat-expansion-panel hideToggle *ngFor="let user of loadedUsers">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            {{user.email}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Last login:  {{user.last_login}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Created todos: <span>{{user.created_todos}}</span></p>
+        <p>Deleted todos: <span>{{user.deleted_todos}}</span></p>
+        <p>Translated todos: <span>{{user.translated_todos}}</span></p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+  
