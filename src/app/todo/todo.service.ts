@@ -20,9 +20,7 @@ export class TodoService {
     }
 
     getAllTodos():Observable<TodoWithId[]>{
-        return this.http.get<TodoWithId[]>(this.url, { headers:{
-            'Access-Control-Allow-Credentials':'http://localhost:3000/api/v1/todos'
-        },withCredentials:true});
+        return this.http.get<TodoWithId[]>(this.url, {withCredentials:true});
     }
 
     addTodo(todoData:{uid:number,name:string,done:boolean,language:string}): Observable<string>{
@@ -34,7 +32,7 @@ export class TodoService {
     }
 
     deleteTodo(id:string|undefined):Observable<string>{
-        return this.http.delete(`${this.url}/${id}`, {responseType:'text'}).pipe(
+        return this.http.delete(`${this.url}/${id}`, {responseType:'text', withCredentials:true}).pipe(
             tap(() => {
                 this.RefreshRequired.next();
             })
@@ -42,7 +40,7 @@ export class TodoService {
     }
 
     updateTodo(id:string|undefined,todo:Todo):Observable<string>{
-        return this.http.put(`${this.url}/${id}`, todo ,{responseType:'text'}).pipe(
+        return this.http.put(`${this.url}/${id}`, todo ,{responseType:'text', withCredentials:true}).pipe(
             tap(() => {
                 this.RefreshRequired.next();
             })
