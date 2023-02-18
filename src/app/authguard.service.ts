@@ -18,9 +18,20 @@ export class AuthguardService implements CanActivate {
   checkUserLogin(route: ActivatedRouteSnapshot, url: any):boolean {
     if (this.authService.isAuthenticated()) {
       const userRole = this.authService.getUserInfo();
+      //if no user found in local storage
       if(route.data['role'] && route.data['role'].indexOf(userRole.role) === -1){
         this.router.navigate(['/']);
         return false
+      }
+      //if a user role accessed user page
+      if(route.routeConfig && route.routeConfig.path === 'user' && userRole.role === 'user'){
+        this.router.navigate(['/']);
+        return false;
+      }
+      //if an admin role accessed todo page
+      if(route.routeConfig && route.routeConfig.path === 'todo' && userRole.role==='admin'){
+        this.router.navigate(['/']);
+        return false;
       }
       return true;
     }

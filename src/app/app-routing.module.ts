@@ -6,13 +6,15 @@ import { TodoComponent } from "./todo/todo.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { AuthguardService } from "./authguard.service";
 import { GuestAuthguard } from "./guestAuthguard.service";
+import { UserComponent } from "./user/user.component";
 
 
 const routes: Routes = [
 {path: '', component: WelcomeComponent},
 {path: 'signup', component: SignupComponent, canActivate:[GuestAuthguard]},
 {path: 'login', component: LoginComponent, canActivate:[GuestAuthguard]},
-{path: 'todo', component: TodoComponent , canActivate:[AuthguardService], data:{role:'user'}}
+{path: 'todo', component: TodoComponent , canActivate:[AuthguardService]},
+{path: 'user', component: UserComponent ,  canActivate:[AuthguardService]}
 ];
 
 @NgModule({
