@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { SnackbarService } from 'src/app/snackbar.service';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -11,17 +11,17 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class LoginComponent {
 
-  constructor(private authenticationService: AuthenticationService, private router:Router, private snackBar:MatSnackBar){}
+  constructor(private authenticationService: AuthenticationService, private router:Router, private snackBar: SnackbarService){}
 
   onSubmit(form:NgForm){
     this.authenticationService.login(form.value).subscribe(result => {
       const userInfo = {"id":result.id, "email":result.user, "sessionID":result.sessionID,"role": result.role}
       if(result.message === 'successfully logged in'){
-        this.snackBar.open(result.message, 'Ok');
+        this.snackBar.notifyUser(result.message, 'Ok');
         localStorage.setItem('user', JSON.stringify(userInfo));
         this.router.navigate(['/todo']);
       }else{
-        this.snackBar.open(result.message, 'Ok');
+        this.snackBar.notifyUser(result.message, 'Ok');
       }
     });
   }

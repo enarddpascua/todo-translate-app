@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { SnackbarService } from 'src/app/snackbar.service';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class SignupComponent {
 
-  constructor(private authenticationService:AuthenticationService, private router: Router, private snackBar:MatSnackBar){}
+  constructor(private authenticationService:AuthenticationService, private router: Router, private snackBar:SnackbarService){}
 
   onSubmit(form:NgForm){
     const reqBody={
@@ -22,10 +22,11 @@ export class SignupComponent {
 
     this.authenticationService.signup(reqBody).subscribe(result =>{
       if(result==="email already exists."){
-        this.snackBar.open(result,'Ok');
+        this.snackBar.notifyUser(result,'Ok');
         return;
       }
       form.reset();
+      this.snackBar.notifyUser(result, 'Ok');
       this.router.navigate(['/login']);
     });
   }

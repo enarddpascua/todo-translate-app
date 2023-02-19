@@ -9,7 +9,10 @@ import { Observable, Subject } from "rxjs";
 })
 export class TodoService {
     //dev url
-    url = 'http://localhost:3000/api/v1/todos';
+    // url = 'http://localhost:3000/api/v1/todos';
+
+    //prod url
+    url='https://radiant-beach-84745.herokuapp.com/api/v1/todos';
 
     constructor(private http: HttpClient){}
 

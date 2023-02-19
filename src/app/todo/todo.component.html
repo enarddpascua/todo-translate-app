@@ -3,5 +3,6 @@
     <section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
             <app-todo-list *ngFor="let todo of loadedTodos"
             [todoElement] = "todo"></app-todo-list>
+            <p *ngIf="loadedTodos.length < 1"> No todos yet.</p>
     </section>
 </main>

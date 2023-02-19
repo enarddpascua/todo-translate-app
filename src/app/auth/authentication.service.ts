@@ -8,18 +8,17 @@ import {User} from './user.model';
     providedIn: 'root'
 })
 export class AuthenticationService{
-    url = 'http://localhost:3000/api/v1/users';
+    // url = 'http://localhost:3000/api/v1/users';
+    url ='https://radiant-beach-84745.herokuapp.com/api/v1/users';
 
     constructor(private http: HttpClient){}
 
     signup(reqBody:User):Observable<string>{
-       return this.http.post(`${this.url}/signup`, reqBody, {responseType:'text'}); 
+       return this.http.post(`${this.url}/signup`, reqBody, {responseType:'text',withCredentials:true}); 
     }
 
     login(reqBody:{email:string, password:string}):Observable<{id:number,message:string, user:string, sessionID:string, role:string}>{
-        return this.http.post<{id:number,message:string, user:string, sessionID:string,role:string}>(`${this.url}/login`, reqBody,{ headers:{
-            'Access-Control-Allow-Credentials':'http://localhost:3000/api/v1/todos'
-        },withCredentials:true});
+        return this.http.post<{id:number,message:string, user:string, sessionID:string,role:string}>(`${this.url}/login`, reqBody,{withCredentials:true});
     }
 
     logout(){
