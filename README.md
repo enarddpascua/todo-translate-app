@@ -1,10 +1,14 @@
+# Install dependencies
+
+Before running locally, make sure to install all the dependencies used in this project by using `npm install` in a terminal or in your IDE's built-in cli.
+
 # TodoTranslateApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve` or `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
